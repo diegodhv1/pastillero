@@ -10,6 +10,6 @@ Para ejecutar el proyecto seguir los siguientes pasos:
 
 1. Clonar -> https://github.com/diegodhv1/pastillero.git
 2. Ejecutar npm install para instalar dependencias
-3. Ejecutar mongodb (instlar base de datos del proyecto -> #pastillero )
+3. Ejecutar mongodb (instlar base de datos del proyecto -> pastillero )
 4. Ejecutar comando -> npm run dev
 
