@@ -9,7 +9,7 @@ Tener en cuenta para ejecutar el proyecto
 5. Agregar las siguientes colecciones
 
 Pacientes
-[
+`[
   {
     "nombre": "diego",
     "edad": "25",
@@ -26,10 +26,11 @@ Pacientes
     "sexo": "M"
   }
 ]
+`
 
 Medicamentos
 
-[
+``[
   {
     "nombre": "Losartán"
   },
@@ -40,6 +41,7 @@ Medicamentos
     "nombre": "Acetaminofén"
   }
 ]
+``
 
 Para ejecutar el proyecto seguir los siguientes pasos:
 
@@ -49,4 +51,6 @@ Para ejecutar el proyecto seguir los siguientes pasos:
 4. Crear la base de datos del proyecto "pastillero"
 4. Ejecutar comando -> npm run dev
 5. Usar el navegador o postman para probar la url - ejemplo: "http://localhost:3000/api/pacientes"
+
+:tada:
 
