@@ -8,7 +8,7 @@ controller.findAll = (req, res) => {
       res.send(medicamentos);
     }).catch(err => {
       res.status(500).send({
-        message: err.message || "Ah ocurrido un error al intentar obtener medicamentos."
+        message: err.message || "Ah ocurrido un error al intentar obtener medicamentos"
       });
     });
 };
