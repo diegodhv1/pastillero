@@ -1,0 +1,19 @@
+{
+  "debug": true,
+  "logs": {
+      "filename": "application-%DATE%.log"
+  },
+  "server": {
+      "port": 3000,
+      "app": 8082,
+      "bodyLimit": "100kb",
+      "corsHeaders": [ "Link" ]
+  },
+  "api": {
+      "url": "http://0.0.0.0:8882/"
+  },
+  "messages": {
+    "error": "Se rompió todo"
+  },
+  "url": "mongodb://localhost:27017/pastillero"
+}

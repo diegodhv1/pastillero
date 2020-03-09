@@ -1,0 +1,46 @@
+{
+  "name": "pastillero",
+  "version": "1.0.0",
+  "description": "pastiller electronico para administración de dosificaciones a pacientes",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=testing npm run build && mocha test/index.js --exit",
+    "dev": "cross-env NODE_ENV=development nodemon -w src --exec \"babel-node src --presets es2015,stage-0\" stubby",
+    "build": "babel src -s -D -d dist",
+    "start": "node dist/",
+    "prestart": "npm run -s build",
+    "linter": "eslint src",
+    "stubby": "stubby -d src/stubs/stubs.json -d src/stubs/listOfLabs.json"
+  },
+  "keywords": [],
+  "author": "Diego, Mauro & Gabriel",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegodhv1/pastillero.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diegodhv1/pastillero/issues"
+  },
+  "homepage": "https://github.com/diegodhv1/pastillero#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.3",
+    "morgan": "^1.9.1",
+    "stubby": "^4.1.1",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.4.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "babel-install": "2.1.0",
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.2"
+  }
+}
