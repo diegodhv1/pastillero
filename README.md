@@ -9,7 +9,9 @@ Tener en cuenta para ejecutar el proyecto
 5. Agregar las siguientes colecciones
 
 Pacientes
-`[
+
+``
+[
   {
     "nombre": "diego",
     "edad": "25",
@@ -26,7 +28,7 @@ Pacientes
     "sexo": "M"
   }
 ]
-`
+``
 
 Medicamentos
 
