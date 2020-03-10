@@ -6,13 +6,15 @@ import bodyParser from 'body-parser';
 import logger from './logger';
 const mongoose = require('mongoose');
 
-import { medicamentos, pacientes} from './routes/';
+import { medicamentos, pacientes, dosificaciones, alarmas, auditorias } from './routes/';
 import { envs } from './config/';
 
 mongoose.Promise = global.Promise;
 
 mongoose.connect(envs.url, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
 }).then(() => {
   console.log("Successfully connected to the database");
 }).catch(err => {
@@ -44,6 +46,9 @@ app.use(bodyParser.json({
 //Index route
 app.use('/api', medicamentos);
 app.use('/api', pacientes);
+app.use('/api', dosificaciones);
+app.use('/api', alarmas);
+app.use('/api', auditorias);
 
 
 

@@ -8,9 +8,16 @@ Tener en cuenta para ejecutar el proyecto
 4. Crear base de datos "pastillero" en mongodb
 5. Agregar las siguientes colecciones
 
-Pacientes
+Crear base de datos
 
 ``
+use pastillero
+``
+
+pacientes
+
+``
+db.pacientes.insertMany(
 [
   {
     "nombre": "diego",
@@ -28,11 +35,14 @@ Pacientes
     "sexo": "M"
   }
 ]
+)
 ``
 
-Medicamentos
+medicamentos
 
-``[
+``
+db.medicamentos.insertMany(
+[
   {
     "nombre": "Losartán"
   },
@@ -43,6 +53,7 @@ Medicamentos
     "nombre": "Acetaminofén"
   }
 ]
+)
 ``
 
 Para ejecutar el proyecto seguir los siguientes pasos:
