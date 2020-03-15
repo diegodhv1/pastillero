@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 import { medicamentos, pacientes, dosificaciones, alarmas, auditorias } from './routes/';
 import { envs } from './config/';
+import { initBoard } from './arduino/prototipo/prototipo';
 
 mongoose.Promise = global.Promise;
 
@@ -50,10 +51,11 @@ app.use('/api', dosificaciones);
 app.use('/api', alarmas);
 app.use('/api', auditorias);
 
-
+//Initialize Arduino Uno
+initBoard();
 
 const listener = app.server.listen(process.env.PORT || envs.server.port, () => {
-  logger.info('server started - ' + listener.address().port);
+  logger.info('server started - ' + listener.address().port);  
 });
 
 module.exports = app;

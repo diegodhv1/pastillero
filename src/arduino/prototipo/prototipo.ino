@@ -1,9 +1,6 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <LiquidCrystal.h>
-#include <Time.h>
-#include <TimeAlarms.h>
-
 
 
 LiquidCrystal_I2C lcd(0x27,16,2);
@@ -12,20 +9,15 @@ LiquidCrystal_I2C lcd(0x27,16,2);
 
   const int ledPIN = 9;
   const int detenerAlarma = 4;
-  String tiempoString = __TIME__;
-  String fechaString = __DATE__;
   
-  time_t tiempo;
-  
-  int minutos;
-  int segundos;
-  int horas;
-  int dia;
-  int mes;
-  int anio;
+  int minutos=59;
+  int segundos=55;
+  int horas=23;
+  int dia=10;
+  int mes=03;
+  int anio=2020;
   
 void setup() {
-  setTime(tiempoString.substring(0,2)toInt(),tiempoString.substring(3,5)toInt(),tiempoString.substring(6,8)toInt());
   pinMode(pinBuzzer, OUTPUT);   // sets the pin as output
   Serial.begin(9600);  
   pinMode(ledPIN , OUTPUT);  //definir pin como salida
@@ -33,20 +25,9 @@ void setup() {
   lcd.init();
   lcd.backlight();
   digitalWrite(detenerAlarma, LOW);
-
-  tiempo = now();
-  
-  minutos=minute(tiempo);
-  segundos=second(tiempo);
-  horas=hour(tiempo);
-  dia=day(tiempo);
-  mes=month(tiempo);
-  anio=year(tiempo);
 }
 
 void loop() {
-  Serial.print(__TIME__);
-  Serial.print(__DATE__);
   Serial.print(detenerAlarma);
   if(digitalRead(detenerAlarma) == HIGH){
     Serial.print(" ");

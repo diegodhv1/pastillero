@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/diegodhv1/pastillero#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",

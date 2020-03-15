@@ -4,6 +4,8 @@ import Auditoria from '../models/auditoria.model'
 import Medicamento from '../models/medicamento.model'
 import Paciente from '../models/paciente.model'
 
+import { updateOneAlarm } from '../data/alarmaData.js';
+
 const controller = {};
 
 controller.findAll = (req, res) => {
@@ -31,6 +33,7 @@ controller.add = (req, res, next) => {
       Alarma.findOneAndUpdate(req.body.alarma,req.body.alarma, {new: true, upsert: true})
       .then(ala => {
         dosificacion.alarma = ala;
+        updateOneAlarm(ala);
         Auditoria.findOneAndUpdate(req.body.auditoria,req.body.auditoria, {new: true, upsert: true})
         .then(aud => {dosificacion.auditoria = aud})
         .then(() => {
