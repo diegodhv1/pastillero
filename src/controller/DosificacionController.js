@@ -8,6 +8,7 @@ import { updateOneAlarm } from '../data/alarmaData.js';
 
 const controller = {};
 
+/*
 controller.findAll = (req, res) => {
   Dosificacion.find()
     .then(dosificaciones => {
@@ -18,8 +19,31 @@ controller.findAll = (req, res) => {
       });
     });
 };
+*/
+
+controller.findAll = (req, res) => {
+  Dosificacion.find({})
+  .populate({path:'medicamento', model: 'Medicamento'})
+  .populate({path:'paciente', model: 'Paciente'})
+  .populate({path:'alarma', model: 'Alarma'})
+  .populate({path:'auditoria', model: 'Auditoria'})
+  .exec((err, dosificaciones) => {
+    if(err){ return(err); }
+    res.json(dosificaciones);
+  })
+};
+
+controller.findOne = (req, res) => {
+  Dosificacion.findById(req.params.id, (err, dosificaciones) => {
+    if(err){ return(err); }
+    res.json(dosificaciones);
+  });
+};
 
 controller.add = (req, res, next) => {
+
+  //res.json(req.body);
+
   let dosificacion = new Dosificacion({
     dosis: req.body.dosis
   });
@@ -41,16 +65,26 @@ controller.add = (req, res, next) => {
             if (err) {
                 return next(err);
             }
-              res.send(dosificacion);
+              res.json(dosificacion);
         });
       })
-        .catch(err => {dosificacion.auditoria = err});
+        .catch(err => {res.json(err)});
       })
-      .catch(err => {dosificacion.alarma = err});
+      .catch(err => {res.json(err)});
     })
-    .catch(err => {dosificacion.paciente = err});
+    .catch(err => {res.json(err)});
   })
-  .catch(err => {dosificacion.medicamento = err});
+  .catch(err => {res.json(err)});
+};
+
+controller.update = (req, res, next) => {
+
+  Dosificacion.findByIdAndUpdate(req.body._id, req.body, {}, (err) => {
+    if (err) {
+      return next(err);
+    }
+    res.json('Dosificacion actualizada');
+  });
 };
 
 export default controller;

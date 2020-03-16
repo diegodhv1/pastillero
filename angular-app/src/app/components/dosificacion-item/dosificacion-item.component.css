@@ -1,0 +1,19 @@
+.dosificacion {
+    background: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px #ccc dotted;
+  }
+
+  .ingesta {
+    text-decoration: line-through;
+  }
+
+  .agregarButton {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 9px;
+    border-radius: 7%;
+    cursor: pointer;
+    float: right;
+  }

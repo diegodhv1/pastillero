@@ -1,0 +1,9 @@
+<div class="container">
+    <div>
+        <app-add-dosificacion (addDosificacion) = "addDosificacion($event)"></app-add-dosificacion>
+    </div>
+    <div>
+    <app-dosificacion-item *ngFor='let dosificacion of dosificaciones' [dosificacion]="dosificacion">
+        </app-dosificacion-item>
+    </div>
+</div>
