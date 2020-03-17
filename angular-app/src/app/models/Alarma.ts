@@ -1,11 +1,11 @@
 export class Alarma {
-    dia:Date;
+    dia:string[];
     horaIngesta:Date;
     sonido:string;
     volumen:number
 
     constructor() {
-        this.dia = new Date();
+        this.dia = [];
         this.horaIngesta = new Date();
         this.sonido = "";
         this.volumen = 100;

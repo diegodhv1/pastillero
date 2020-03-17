@@ -16,6 +16,7 @@ export class AddDosificacionComponent implements OnInit {
   medicamento:Medicamento = new Medicamento();
   paciente:Paciente = new Paciente();
   alarma:Alarma = new Alarma();
+  dias:string[] = [];
 
   moment:any = moment;
 
@@ -30,7 +31,7 @@ export class AddDosificacionComponent implements OnInit {
       medicamento: this.medicamento,
       paciente: this.paciente,
       alarma: {
-        dia: this.alarma.dia,
+        dia: this.dias,
         horaIngesta: moment(this.alarma.horaIngesta, 'h:mm a').toDate(),
         sonido: this.alarma.sonido,
         volumen: this.alarma.volumen
@@ -39,6 +40,10 @@ export class AddDosificacionComponent implements OnInit {
     }
     
     this.addDosificacion.emit(dosificacion);
+  }
+
+  onDiasReceived(dias) {
+    this.dias = dias;   
   }
 
 }

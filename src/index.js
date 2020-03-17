@@ -34,9 +34,9 @@ logger.stream = {
 //websocket (siempre usar namespaces)
 let io = require('socket.io')(app.server);
 io.of('/api/dosificaciones').on('connection', function(socket){
-  console.log('a socket connected to the alarmas api');
+  console.log('a socket connected to the api');
   socket.on('disconnect', function(){
-    console.log('socket disconnected from the alarmas api');
+    console.log('socket disconnected from the api');
   });
 });
 

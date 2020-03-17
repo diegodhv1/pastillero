@@ -37,3 +37,9 @@
     display: table;
     clear: both;
   }
+
+  .radio-group {
+    display: flex;
+    padding-left: 45%;
+    width: 10%;
+  }

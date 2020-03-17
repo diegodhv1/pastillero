@@ -10,6 +10,7 @@ import { DosificacionesComponent } from './components/dosificaciones/dosificacio
 import { DosificacionItemComponent } from './components/dosificacion-item/dosificacion-item.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { AddDosificacionComponent } from './components/add-dosificacion/add-dosificacion.component';
+import { DiaSelectorComponent } from './components/dia-selector/dia-selector.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AddDosificacionComponent } from './components/add-dosificacion/add-dosi
     DosificacionesComponent,
     DosificacionItemComponent,
     HeaderComponent,
-    AddDosificacionComponent
+    AddDosificacionComponent,
+    DiaSelectorComponent
   ],
   imports: [
     BrowserModule,

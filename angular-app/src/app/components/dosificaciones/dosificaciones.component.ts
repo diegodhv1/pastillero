@@ -21,8 +21,6 @@ export class DosificacionesComponent implements OnInit {
 
   addDosificacion(dosificacion:Dosificacion) {
     this.dosificacionService.addDosificacion(dosificacion).subscribe(d => {
-      console.log(d);
-      
       this.dosificaciones.push(d);
     });
 

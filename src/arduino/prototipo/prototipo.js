@@ -37,22 +37,27 @@ const initBoard = () => {
 
         //Request inicial
         getAlarms();
+
+        let prueba = currentTime.format('dddd LTS');
         
         //loop
         this.loop(1000, () => {
             currentTime.add(1,'second');
-            lcd.cursor(0, 0).print("Hora:" + getTime(currentTime));
+            lcd.cursor(0, 0).print(getTime(currentTime));
             lcd.cursor(1, 0).print("Fecha:" + getDate(currentTime));
             alarmaData.forEach(alarma => {
-                setAlarm(currentTime,alarma.horaIngesta);
+                alarma.dia.forEach(diaIngesta => {
+                    setAlarm(currentTime, diaIngesta, alarma.horaIngesta);
+                });
             });
         });
     });
 }
 
 //Alarma
-function setAlarm(time,alarm) {
-    if (getTime(time) == moment(alarm).format("LTS")) {
+function setAlarm(time,alarmDay, alarmTime) {
+    let formattedTime = moment(alarmTime).format('LTS');
+    if (getTime(time) == alarmDay + " " + formattedTime) {
         led.on();
         board.digitalWrite(3,1);
     };
@@ -62,7 +67,7 @@ function setAlarm(time,alarm) {
 moment.locale("es");
 
 function getTime(moment) {
-    return moment.format("LTS");
+    return moment.format("dddd LTS");
 };
 
 function getDate(moment) {
@@ -74,7 +79,6 @@ function getAlarms() {
     axios.get('http://localhost:3000/api/alarmas')
             .then(res => {
                 alarmaData = res.data;
-                console.log(alarmaData);
             })
             .catch(err => console.log(err));
 };
