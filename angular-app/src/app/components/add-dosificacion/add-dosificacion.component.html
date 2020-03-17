@@ -1,0 +1,32 @@
+<div class="container">
+    <form class="form" (ngSubmit) = "onSubmit()">
+        <div class="col-25">
+            <div class="row">
+                <input type="text" name="pacienteNombre" [ngModel]="paciente?.nombre" (ngModelChange)="paciente.nombre = $event" placeholder="Escriba nombre del paciente">
+                <input type="text" name="pacienteEdad" [ngModel]="paciente?.edad" (ngModelChange)="paciente.edad = $event" placeholder="Escriba edad del paciente">
+                <div class="radio-group">
+                    <input type="radio" id="male" name="gender" value="M" [ngModel]="paciente?.sexo" (ngModelChange)="paciente.sexo = $event">
+                    <label for="male">M</label>
+                    <input type="radio" id="female" name="gender" value="F" [ngModel]="paciente?.sexo" (ngModelChange)="paciente.sexo = $event">
+                    <label for="female">F</label>
+                </div>
+            </div>
+            
+            <div class="row">
+                <input type="number" name="dosis" [(ngModel)]="dosis" placeholder="Escriba la dosis">
+            </div>
+
+            <div class="row">
+                <input type="text" name="medicamento" [ngModel]="medicamento?.nombre" (ngModelChange)="medicamento.nombre = $event" placeholder="Escriba el medicamento">
+            </div>
+            <div class="row">
+                <app-dia-selector (addDias)="onDiasReceived($event)"></app-dia-selector>
+                <!-- <input type="text" name="alarmaDia" [ngModel]="alarma?.dia" (ngModelChange)="alarma.dia = $event" placeholder="Escriba dia de la alarma"> -->
+                <input type="time" name="alarmaHora" [ngModel]="alarma?.horaIngesta" (ngModelChange)="alarma.horaIngesta = $event" placeholder="Escriba hora de la alarma">
+                <input type="text" name="alarmaSonido" [ngModel]="alarma?.sonido" (ngModelChange)="alarma.sonido = $event" placeholder="Escriba sonido de la alarma">
+                <input type="number" name="alarmaVolumen" [ngModel]="alarma?.volumen" (ngModelChange)="alarma.volumen = $event" placeholder="Escriba volumen de la alarma">
+            </div>
+            <input type="submit" value="Añadir dosificacion" class="btn">
+        </div>
+    </form>
+</div>

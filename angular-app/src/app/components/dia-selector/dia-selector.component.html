@@ -1,0 +1,8 @@
+<form>
+	<div class="form-check" *ngFor="let dia of dias; let i=index">
+		<input class="form-check-input" [ngModel]="isSelected(dia)" (ngModelChange)="onChange(dia, $event)" type="checkbox" name="diasgroup_{{i}}" id="diasgroup_{{i}}">
+		<label class="form-check-label" for="diasgroup_{{i}}">
+        {{ dia[0].toUpperCase() }}
+    </label>
+	</div>
+</form>

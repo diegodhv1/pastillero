@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const AlarmaSchema = mongoose.Schema({
-    dia: Date,
+    dia: [String],
     horaIngesta: Date,
     sonido: String,
     volumen: Number
