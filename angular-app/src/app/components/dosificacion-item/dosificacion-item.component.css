@@ -9,11 +9,22 @@
   }
 
   .agregarButton {
+    display: none;
     background: #ff0000;
     color: #fff;
     border: none;
     padding: 5px 9px;
     border-radius: 7%;
+    cursor: pointer;
+    float: right;
+  }
+
+  .del {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 9px;
+    border-radius: 70%;
     cursor: pointer;
     float: right;
   }

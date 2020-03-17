@@ -15,14 +15,22 @@ export class DosificacionesComponent implements OnInit {
 
   ngOnInit() {
     this.dosificacionService.getDosificaciones().subscribe(dosificaciones => {
-      this.dosificaciones = dosificaciones;
+      this.dosificaciones = dosificaciones;      
     });
   }
 
   addDosificacion(dosificacion:Dosificacion) {
-    this.dosificacionService.addDosificacion(dosificacion).subscribe(dosificacion => {
-      this.dosificaciones.push(dosificacion);
+    this.dosificacionService.addDosificacion(dosificacion).subscribe(d => {
+      console.log(d);
+      
+      this.dosificaciones.push(d);
     });
+
+  }
+
+  deleteDosificacion(dosificacion:Dosificacion) {
+    this.dosificaciones = this.dosificaciones.filter(d => d._id !== dosificacion._id);
+    this.dosificacionService.deleteDosificacion(dosificacion).subscribe(d => console.log(d));
   }
 
 }

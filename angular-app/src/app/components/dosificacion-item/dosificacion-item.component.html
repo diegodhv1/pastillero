@@ -3,4 +3,5 @@
     {{ dosificacion.medicamento.nombre }} - {{ dosificacion.dosis }} dosis - {{ dosificacion.paciente.nombre }} - {{  moment(this.dosificacion.alarma.horaIngesta).format('LT') }}
   </p>
   <button (click)="onUpdate(dosificacion)" class="agregarButton">Actualizar alarma</button>
+  <button (click)="onDelete(dosificacion)" class="del">X</button>
 </div>

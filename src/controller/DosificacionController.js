@@ -8,41 +8,41 @@ import { updateOneAlarm } from '../data/alarmaData.js';
 
 const controller = {};
 
-/*
-controller.findAll = (req, res) => {
-  Dosificacion.find()
-    .then(dosificaciones => {
-      res.send(dosificaciones);
-    }).catch(err => {
-      res.status(500).send({
-        message: err.message || "Ha ocurrido un error al intentar obtener dosificaciones"
-      });
-    });
-};
-*/
+controller.emitEvents = () => {
+  console.log('Evento enviado a sockets');
+  require('../index').io.of('/api/dosificaciones').emit('get alarms');
+}
 
-controller.findAll = (req, res) => {
-  Dosificacion.find({})
+function findFunction(query, res, limit) {
+  Dosificacion.find(query)
   .populate({path:'medicamento', model: 'Medicamento'})
   .populate({path:'paciente', model: 'Paciente'})
   .populate({path:'alarma', model: 'Alarma'})
   .populate({path:'auditoria', model: 'Auditoria'})
-  .exec((err, dosificaciones) => {
+  .exec((err, dosificaciones) => {    
     if(err){ return(err); }
-    res.json(dosificaciones);
-  })
+    if(!limit) { 
+      res.json(dosificaciones);
+    } else { 
+      res.json(dosificaciones[0]); 
+    };
+  });
 };
 
-controller.findOne = (req, res) => {
+controller.findAll = (req, res, next) => {
+  findFunction({},res, false);
+  next();
+};
+
+controller.findOne = (req, res, next) => {
   Dosificacion.findById(req.params.id, (err, dosificaciones) => {
     if(err){ return(err); }
     res.json(dosificaciones);
+    next();
   });
 };
 
 controller.add = (req, res, next) => {
-
-  //res.json(req.body);
 
   let dosificacion = new Dosificacion({
     dosis: req.body.dosis
@@ -64,8 +64,9 @@ controller.add = (req, res, next) => {
           dosificacion.save(function (err) {
             if (err) {
                 return next(err);
-            }
-              res.json(dosificacion);
+            }             
+              findFunction(dosificacion, res, true);
+              next();
         });
       })
         .catch(err => {res.json(err)});
@@ -84,7 +85,25 @@ controller.update = (req, res, next) => {
       return next(err);
     }
     res.json('Dosificacion actualizada');
+    next();
   });
+};
+
+controller.delete = (req, res, next) => {
+  
+  Dosificacion.findByIdAndDelete(req.params.id, (err, dosificaciones) => {
+    if (err) {
+      return next(err);
+    }
+    Alarma.findByIdAndDelete(dosificaciones.alarma._id, (err, alarma) => {
+      if (err) {
+        return next(err);
+      }
+      res.json('Dosificacion eliminada');
+      next();
+    })
+  });
+
 };
 
 export default controller;

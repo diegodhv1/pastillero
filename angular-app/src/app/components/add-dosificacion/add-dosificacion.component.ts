@@ -37,7 +37,7 @@ export class AddDosificacionComponent implements OnInit {
       },
       auditoria: {ingesta: false}
     }
-
+    
     this.addDosificacion.emit(dosificacion);
   }
 

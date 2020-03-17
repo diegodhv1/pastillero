@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Dosificacion } from '../../models/Dosificacion';
 import { DosificacionService } from 'src/app/services/dosificacion.service';
 import * as moment from 'moment';
@@ -11,6 +11,7 @@ import * as moment from 'moment';
 export class DosificacionItemComponent implements OnInit {
 
   @Input() dosificacion: Dosificacion;
+  @Output() deleteDosificacion: EventEmitter<Dosificacion> = new EventEmitter();
 
   moment:any = moment;
 
@@ -33,6 +34,10 @@ export class DosificacionItemComponent implements OnInit {
     this.dosificacionService.updateDosificacion(dosificacion).subscribe(d => {
       console.log(d);
     });
+  }
+
+  onDelete(dosificacion) {
+    this.deleteDosificacion.emit(dosificacion);
   }
 
 }

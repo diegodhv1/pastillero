@@ -36,6 +36,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.9.3",
     "morgan": "^1.9.1",
+    "socket.io": "^2.3.0",
     "stubby": "^4.1.1",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.4.2"

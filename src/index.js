@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 
 import { medicamentos, pacientes, dosificaciones, alarmas, auditorias } from './routes/';
 import { envs } from './config/';
-import { initBoard } from './arduino/prototipo/prototipo';
 
 mongoose.Promise = global.Promise;
 
@@ -32,6 +31,15 @@ logger.stream = {
   }
 };
 
+//websocket (siempre usar namespaces)
+let io = require('socket.io')(app.server);
+io.of('/api/dosificaciones').on('connection', function(socket){
+  console.log('a socket connected to the alarmas api');
+  socket.on('disconnect', function(){
+    console.log('socket disconnected from the alarmas api');
+  });
+});
+
 // logger
 app.use(morgan('dev'));
 
@@ -51,11 +59,8 @@ app.use('/api', dosificaciones);
 app.use('/api', alarmas);
 app.use('/api', auditorias);
 
-//Initialize Arduino Uno
-initBoard();
-
 const listener = app.server.listen(process.env.PORT || envs.server.port, () => {
   logger.info('server started - ' + listener.address().port);  
 });
 
-module.exports = app;
+module.exports = { app, io };
